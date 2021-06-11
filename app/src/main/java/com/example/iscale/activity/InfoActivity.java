@@ -1,14 +1,14 @@
 package com.example.iscale.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.iscale.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.iscale.R.id.tvMusica;
+import com.example.iscale.R;
+import com.example.iscale.model.Musica;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -23,6 +23,11 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        Musica musica = getIntent().getParcelableExtra("musica");
+        Log.d("Musica", "OnCreate: "+ musica.getAlbum());
+
+
 
     }
 }

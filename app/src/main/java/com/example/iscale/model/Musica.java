@@ -1,6 +1,9 @@
 package com.example.iscale.model;
 
-public class Musica {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Musica implements Parcelable {
 
     private String Musica;
     private String Artista;
@@ -17,6 +20,27 @@ public class Musica {
         Gravadora = gravadora;
         AlbumArt = albumArt;
     }
+
+    protected Musica(Parcel in) {
+        Musica = in.readString();
+        Artista = in.readString();
+        Album = in.readString();
+        Duracao = in.readString();
+        Gravadora = in.readString();
+        AlbumArt = in.readInt();
+    }
+
+    public static final Creator<Musica> CREATOR = new Creator<Musica>() {
+        @Override
+        public Musica createFromParcel(Parcel in) {
+            return new Musica(in);
+        }
+
+        @Override
+        public Musica[] newArray(int size) {
+            return new Musica[size];
+        }
+    };
 
     public String getMusica() {
         return Musica;
@@ -64,5 +88,20 @@ public class Musica {
 
     public void setGravadora(String gravadora) {
         Gravadora = gravadora;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Musica);
+        dest.writeString(Artista);
+        dest.writeString(Album);
+        dest.writeString(Duracao);
+        dest.writeString(Gravadora);
+        dest.writeInt(AlbumArt);
     }
 }
